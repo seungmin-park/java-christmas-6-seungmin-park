@@ -16,4 +16,16 @@ public enum MenuType {
         this.title = title;
         this.menus = menus;
     }
+
+    public static MenuType findByMenu(Menu menu) {
+        return Arrays.stream(MenuType.values())
+            .filter(menuType -> menuType.hasMenu(menu))
+            .findFirst()
+            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
+    }
+
+    private boolean hasMenu(Menu menu) {
+        return menus.stream()
+            .anyMatch(m -> m.equals(menu));
+    }
 }
