@@ -3,7 +3,7 @@ package christmas.domain;
 import java.util.Arrays;
 
 public enum Menu {
-    BUTTON_MUSHROOM_SOUP("앙송이수프", 6000),
+    BUTTON_MUSHROOM_SOUP("양송이수프", 6000),
     TAPAS("타파스", 5_500),
     CAESAR_SALAD("시저샐러드", 8_000),
     T_BORN_STEAK("티본스테이크", 55_000),
