@@ -102,4 +102,32 @@ class OrderTest {
         //then
         assertThat(dayOfMonth).isEqualTo(orderDayOfMonth);
     }
+
+    @Test
+    @DisplayName("비교날짜가 주문날짜와 일치하면 true를 반환한다.")
+    void returnTrueTargetDateMatchOrderDate() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        LocalDate targetDate = LocalDate.of(2023, 12, 1);
+        //when
+        boolean result = order.isMatchDate(targetDate);
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    @DisplayName("비교날짜가 주문날짜와 일치하면 false를 반환한다.")
+    void returnFalseTargetDateNotMatchOrderDate() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        LocalDate targetDate = LocalDate.of(2023, 12, 10);
+        //when
+        boolean result = order.isMatchDate(targetDate);
+        //then
+        assertThat(result).isFalse();
+    }
 }
