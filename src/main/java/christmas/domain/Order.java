@@ -58,4 +58,8 @@ public class Order {
     public int getOrderDayOfMonth() {
         return orderDate.getDayOfMonth();
     }
+
+    public boolean isMatchDate(LocalDate targetDate) {
+        return orderDate.equals(targetDate);
+    }
 }
