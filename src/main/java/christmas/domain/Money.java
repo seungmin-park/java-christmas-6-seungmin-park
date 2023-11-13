@@ -13,4 +13,8 @@ public class Money {
             throw new IllegalArgumentException("[ERROR] 주문 금액 에러");
         }
     }
+
+    public boolean isGreaterThanEqualsAmount(int amount) {
+        return this.amount >= amount;
+    }
 }
