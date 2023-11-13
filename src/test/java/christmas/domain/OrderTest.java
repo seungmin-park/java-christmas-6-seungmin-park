@@ -88,4 +88,18 @@ class OrderTest {
         //then
         assertThat(result).isFalse();
     }
+
+    @Test
+    @DisplayName("주문일을 반환한다.")
+    void returnOrderDayOfMonth() {
+        //given
+        int dayOfMonth = 25;
+        LocalDate orderDate = LocalDate.of(2023, 12, dayOfMonth);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        //when
+        int orderDayOfMonth = order.getOrderDayOfMonth();
+        //then
+        assertThat(dayOfMonth).isEqualTo(orderDayOfMonth);
+    }
 }
