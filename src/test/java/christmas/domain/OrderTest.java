@@ -6,8 +6,11 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.Map;
+import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class OrderTest {
 
@@ -51,5 +54,38 @@ class OrderTest {
         assertThat(order)
             .extracting("orderDate", "menus")
             .containsExactly(orderDate, menus);
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "2023-12-01, 2023-12-01, 2023-12-03",
+        "2023-12-02, 2023-12-01, 2023-12-03",
+        "2023-12-03, 2023-12-01, 2023-12-03",
+    })
+    @DisplayName("주문 날짜가 기간에 포함되면 true를 반환한다.")
+    void returnTrueOrderDateContainPeriod(LocalDate orderDate, LocalDate startDate, LocalDate endDate) {
+        //given
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        //when
+        boolean result = order.isBetweenAt(startDate, endDate);
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "2023-12-01, 2023-12-02, 2023-12-03",
+        "2023-12-04, 2023-12-02, 2023-12-03",
+    })
+    @DisplayName("주문 날짜가 기간에 포함되지 않으면 false를 반환한다.")
+    void returnFalseOrderDateOutOfPeriod(LocalDate orderDate, LocalDate startDate, LocalDate endDate) {
+        //given
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        //when
+        boolean result = order.isBetweenAt(startDate, endDate);
+        //then
+        assertThat(result).isFalse();
     }
 }
