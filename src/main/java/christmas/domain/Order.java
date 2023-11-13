@@ -67,4 +67,8 @@ public class Order {
     public boolean isMatchedDayOfWeek(DayOfWeek targetDayOfWeek) {
         return orderDate.getDayOfWeek() == targetDayOfWeek;
     }
+
+    public boolean isGreaterThanEqualsAmount(int amount) {
+        return money.isGreaterThanEqualsAmount(amount);
+    }
 }
