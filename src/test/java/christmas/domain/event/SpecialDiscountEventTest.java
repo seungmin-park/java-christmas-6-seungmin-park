@@ -40,4 +40,19 @@ class SpecialDiscountEventTest {
         //then
         assertThat(result).isFalse();
     }
+
+    @Test
+    @DisplayName("스페셜 이벤트의 할인금액을 반환한다.")
+    void returnDiscountedMoney() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 3);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        SpecialDiscountEvent specialDiscountEvent = new SpecialDiscountEvent();
+        //when
+        Money discountedMoney = specialDiscountEvent.apply(order);
+        //then
+        assertThat(discountedMoney).extracting("amount")
+            .isEqualTo(1_000);
+    }
 }
