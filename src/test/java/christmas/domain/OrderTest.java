@@ -3,6 +3,7 @@ package christmas.domain;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.Map;
@@ -127,6 +128,34 @@ class OrderTest {
         LocalDate targetDate = LocalDate.of(2023, 12, 10);
         //when
         boolean result = order.isMatchDate(targetDate);
+        //then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("비교 요일이 주문 날짜의 요일과 일치할 경우 true를 반환한다.")
+    void returnTrueTargetDayOfWeekMatchedOrderDayOfWeek() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        DayOfWeek targetDayOfWeek = DayOfWeek.FRIDAY;
+        //when
+        boolean result = order.isMatchedDayOfWeek(targetDayOfWeek);
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    @DisplayName("비교 요일이 주문 날짜의 요일과 일치하지 않을 경우 false를 반환한다.")
+    void returnFalseTargetDayOfWeekMatchedOrderDayOfWeek() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        DayOfWeek targetDayOfWeek = DayOfWeek.MONDAY;
+        //when
+        boolean result = order.isMatchedDayOfWeek(targetDayOfWeek);
         //then
         assertThat(result).isFalse();
     }
