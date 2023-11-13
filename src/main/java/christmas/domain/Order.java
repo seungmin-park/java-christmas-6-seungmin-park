@@ -54,4 +54,8 @@ public class Order {
         return (startDate.isEqual(orderDate) || startDate.isBefore(orderDate)) &&
             (endDate.equals(orderDate) || endDate.isAfter(orderDate));
     }
+
+    public int getOrderDayOfMonth() {
+        return orderDate.getDayOfMonth();
+    }
 }
