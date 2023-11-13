@@ -159,4 +159,35 @@ class OrderTest {
         //then
         assertThat(result).isFalse();
     }
+
+    @Test
+    @DisplayName("주문 금액이 비교 금액보다 크거나 같으면 true를 반환한다.")
+    void returnTrueAmountGreaterThanEqualMoneyAmount() {
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        Menu barbecueRibs = Menu.BARBECUE_RIBS;
+        int price = barbecueRibs.getPrice();
+        menus.put(barbecueRibs, 1);
+        //when
+        boolean result = order.isGreaterThanEqualsAmount(price);
+        //then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("주문 금액이 비교 금액보다 작으면 false를 반환한다.")
+    void returnFalseAmountLessMoneyAmount() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        Menu barbecueRibs = Menu.BARBECUE_RIBS;
+        int price = barbecueRibs.getPrice();
+        menus.put(barbecueRibs, 1);
+        //when
+        boolean result = order.isGreaterThanEqualsAmount(price + 1);
+        //then
+        assertThat(result).isFalse();
+    }
 }
