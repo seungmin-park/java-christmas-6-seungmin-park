@@ -49,4 +49,9 @@ public class Order {
             .mapToInt(menu -> menu.getPrice() * menus.get(menu))
             .sum();
     }
+
+    public boolean isBetweenAt(LocalDate startDate, LocalDate endDate) {
+        return (startDate.isEqual(orderDate) || startDate.isBefore(orderDate)) &&
+            (endDate.equals(orderDate) || endDate.isAfter(orderDate));
+    }
 }
