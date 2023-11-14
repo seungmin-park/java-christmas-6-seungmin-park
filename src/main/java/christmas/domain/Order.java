@@ -2,6 +2,7 @@ package christmas.domain;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -62,6 +63,12 @@ public class Order {
 
     public boolean isMatchDate(LocalDate targetDate) {
         return orderDate.equals(targetDate);
+    }
+
+    public boolean isMatchedDayOfWeek(List<DayOfWeek> targetDayOfWeeks) {
+        return targetDayOfWeeks
+            .stream()
+            .anyMatch(dayOfWeek -> dayOfWeek.equals(orderDate.getDayOfWeek()));
     }
 
     public boolean isMatchedDayOfWeek(DayOfWeek targetDayOfWeek) {
