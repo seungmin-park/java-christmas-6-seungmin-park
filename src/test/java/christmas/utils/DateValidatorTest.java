@@ -5,6 +5,8 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 class DateValidatorTest {
 
@@ -30,11 +32,11 @@ class DateValidatorTest {
             .hasMessage("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
     }
 
-    @Test
+    @ParameterizedTest
+    @CsvSource({"-1", "0", "asd"})
     @DisplayName("방문날짜가 양의 정수가 아닌 경우 예외를 발생시킨다.")
-    void throwExceptionVisitDateNotPositiveDigit() {
+    void throwExceptionVisitDateNotPositiveDigit(String visitDate) {
         //given
-        String visitDate = "0";
         //when //then
         assertThatThrownBy(() -> DateValidator.validateVisitDate(visitDate))
             .isInstanceOf(IllegalArgumentException.class)
