@@ -253,4 +253,24 @@ class OrderTest {
         //then
         assertThat(result).isFalse();
     }
+
+    @Test
+    @DisplayName("주문 메뉴에서 특정 메뉴 타입의 개수를 반환한다.")
+    void returnMenuTypeCountInOrderMenu() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Menu barbecueRibs = Menu.BARBECUE_RIBS;
+        Menu chocolateCake = Menu.CHOCOLATE_CAKE;
+
+        menus.put(barbecueRibs, 5);
+        menus.put(chocolateCake, 3);
+
+        MenuType menuType = MenuType.findByMenu(barbecueRibs);
+        Order order = new Order(orderDate, menus);
+        //when
+        int menuTypeCount = order.getMenuTypeCount(menuType);
+        //then
+        assertThat(menuTypeCount).isEqualTo(5);
+    }
 }
