@@ -1,6 +1,9 @@
 package christmas.domain.event;
 
+import christmas.domain.Order;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public enum EventGroup {
     DISCOUNT("할인", List.of(
@@ -17,5 +20,12 @@ public enum EventGroup {
     EventGroup(String text, List<Event> events) {
         this.text = text;
         this.events = events;
+    }
+
+    public static List<Event> getMatchedEvents(Order order) {
+        return Stream.of(EventGroup.values())
+            .flatMap(eventGroup -> eventGroup.events.stream())
+            .filter(event -> event.isSatisfiedBy(order))
+            .collect(Collectors.toList());
     }
 }
