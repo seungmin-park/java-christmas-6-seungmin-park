@@ -5,9 +5,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.util.Arrays;
 import java.util.EnumMap;
+import java.util.List;
 import java.util.Map;
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -217,6 +218,38 @@ class OrderTest {
         menus.put(barbecueRibs, 1);
         //when
         boolean result = order.containMenuType(MenuType.DESSERT);
+        //then
+        assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("주문 요일이 특정 요일안에 포함되어 있을 경우 true를 반환한다.")
+    void returnTrueOrderDayOfWeekContainTargetDayOfWeeks() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        DayOfWeek orderDateDayOfWeek = orderDate.getDayOfWeek();
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        List<DayOfWeek> targetDayOfWeeks = List.of(orderDateDayOfWeek, DayOfWeek.SATURDAY);
+        //when
+        boolean result = order.isMatchedDayOfWeek(targetDayOfWeeks);
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    @DisplayName("주문 요일이 특정 요일안에 포함되어 있을 경우 false를 반환한다.")
+    void returnFalseOrderDayOfWeekNotContainTargetDayOfWeeks() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        DayOfWeek orderDateDayOfWeek = orderDate.getDayOfWeek();
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        List<DayOfWeek> targetDayOfWeeks = Arrays.stream(DayOfWeek.values())
+            .filter(dayOfWeek -> !dayOfWeek.equals(orderDateDayOfWeek))
+            .toList();
+        //when
+        boolean result = order.isMatchedDayOfWeek(targetDayOfWeeks);
         //then
         assertThat(result).isFalse();
     }
