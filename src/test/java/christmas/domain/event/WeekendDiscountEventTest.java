@@ -3,6 +3,7 @@ package christmas.domain.event;
 import static org.assertj.core.api.Assertions.assertThat;
 
 import christmas.domain.Menu;
+import christmas.domain.Money;
 import christmas.domain.Order;
 import java.time.LocalDate;
 import java.util.EnumMap;
@@ -45,5 +46,23 @@ class WeekendDiscountEventTest {
         boolean result = weekendDiscountEvent.isSatisfiedBy(order);
         //then
         assertThat(result).isFalse();
+    }
+
+    @Test
+    @DisplayName("메인 매뉴 1개당 2,023원을 할인해준다.")
+    void discountMainMenuCountPer2_023() {
+        //given
+        WeekendDiscountEvent weekendDiscountEvent = new WeekendDiscountEvent();
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        int orderCount = 3;
+        menus.put(Menu.T_BORN_STEAK, orderCount);
+        Order order = new Order(orderDate, menus);
+        //when
+        Money discountedMoney = weekendDiscountEvent.apply(order);
+        //then
+        assertThat(discountedMoney)
+            .extracting("amount")
+            .isEqualTo(2023 * orderCount);
     }
 }
