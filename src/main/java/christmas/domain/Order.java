@@ -71,4 +71,10 @@ public class Order {
     public boolean isGreaterThanEqualsAmount(int amount) {
         return money.isGreaterThanEqualsAmount(amount);
     }
+
+    public boolean containMenuType(MenuType menuType) {
+        return menus.keySet()
+            .stream()
+            .anyMatch(menu -> MenuType.findByMenu(menu).equals(menuType));
+    }
 }
