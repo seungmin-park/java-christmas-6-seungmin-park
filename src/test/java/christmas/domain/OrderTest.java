@@ -190,4 +190,34 @@ class OrderTest {
         //then
         assertThat(result).isFalse();
     }
+
+    @Test
+    @DisplayName("주문 메뉴가 특정 타입을 포함하고 있을 경우 true를 반환한다.")
+    void returnTrueOrderMenuContainMenuType() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        Menu barbecueRibs = Menu.BARBECUE_RIBS;
+        menus.put(barbecueRibs, 1);
+        //when
+        boolean result = order.containMenuType(MenuType.MAIN_DISH);
+        //then
+        assertThat(result).isTrue();
+    }
+
+    @Test
+    @DisplayName("주문 메뉴가 특정 타입을 포함하고 있지 않을 경우 false를 반환한다.")
+    void returnFalseOrderMenuNotContainMenuType() {
+        //given
+        LocalDate orderDate = LocalDate.of(2023, 12, 1);
+        Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
+        Order order = new Order(orderDate, menus);
+        Menu barbecueRibs = Menu.BARBECUE_RIBS;
+        menus.put(barbecueRibs, 1);
+        //when
+        boolean result = order.containMenuType(MenuType.DESSERT);
+        //then
+        assertThat(result).isFalse();
+    }
 }
