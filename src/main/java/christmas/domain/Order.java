@@ -84,4 +84,12 @@ public class Order {
             .stream()
             .anyMatch(menu -> MenuType.findByMenu(menu).equals(menuType));
     }
+
+    public int getMenuTypeCount(MenuType eventMenuType) {
+        return menus.keySet()
+            .stream()
+            .filter(menu -> MenuType.findByMenu(menu).equals(eventMenuType))
+            .mapToInt(menus::get)
+            .sum();
+    }
 }
