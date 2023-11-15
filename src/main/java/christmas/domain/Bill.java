@@ -47,6 +47,11 @@ public class Bill {
             .get();
     }
 
+    public Badge getBadgeForTotalBenefitMoney() {
+        Money totalBenefitMoney = getTotalBenefitMoney();
+        return Badge.findByMoney(totalBenefitMoney);
+    }
+
     public Money getTotalBenefitMoney() {
         List<Money> benefitMonies = getBenefitMonies();
 
