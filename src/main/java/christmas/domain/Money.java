@@ -1,5 +1,7 @@
 package christmas.domain;
 
+import java.text.NumberFormat;
+
 public class Money {
     private final int amount;
 
@@ -16,5 +18,14 @@ public class Money {
 
     public boolean isGreaterThanEqualsAmount(int amount) {
         return this.amount >= amount;
+    }
+
+    public Money minus(Money money) {
+        return new Money(this.amount - money.amount);
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%,d원", amount);
     }
 }
