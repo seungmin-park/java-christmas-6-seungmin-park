@@ -13,6 +13,16 @@ public class Bill {
         this.events = events;
     }
 
+
+    public Money calculateTotalPaymentMoney() {
+        Money benefitBeforeMoney = getBenefitBeforeMoney();
+        Money giftMoney = new Money(getGiftMenu().getPrice());
+        Money totalBenefitMoney = getTotalBenefitMoney();
+
+        return benefitBeforeMoney.minus(totalBenefitMoney)
+            .plus(giftMoney);
+    }
+
     public Money getBenefitBeforeMoney() {
         return new Money(order.getTotalPrice());
     }
