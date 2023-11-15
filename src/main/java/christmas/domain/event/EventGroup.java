@@ -14,6 +14,7 @@ public enum EventGroup {
     ),
     GIFT("증정", List.of(new GiftEvent()));
 
+    private static final int LEAST_EVENT_APPLY_CONDITION = 10_000;
     private final String text;
     private final List<Event> events;
 
@@ -25,7 +26,7 @@ public enum EventGroup {
     public static List<Event> getMatchedEvents(Order order) {
         return Stream.of(EventGroup.values())
             .flatMap(eventGroup -> eventGroup.events.stream())
-            .filter(event -> event.isSatisfiedBy(order) && order.getTotalPrice() >= 10_000)
+            .filter(event -> event.isSatisfiedBy(order) && order.getTotalPrice() >= LEAST_EVENT_APPLY_CONDITION)
             .collect(Collectors.toList());
     }
 }
