@@ -30,4 +30,16 @@ public class OutputView {
         System.out.println("\n<할인 전 총주문 금액>");
         System.out.println(bill.getBenefitBeforeMoney());
     }
+
+    public void printGiftEventContext(Bill bill) {
+        System.out.println("\n<증정 메뉴>");
+        boolean containGifEvent = bill.isContainGifEvent();
+        Menu giftMenu = bill.getGiftMenu();
+        if (containGifEvent) {
+            System.out.printf("%s 1개\n", giftMenu.getName());
+        }
+        if (!containGifEvent) {
+            System.out.println(giftMenu.getName());
+        }
+    }
 }
