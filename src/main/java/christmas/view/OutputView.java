@@ -7,4 +7,8 @@ public class OutputView {
     public void printPlannerNoticeMessage() {
         System.out.println(PLANNER_NOTICE_MESSAGE);
     }
+
+    public void printErrorMessage(String errorMessage) {
+        System.out.println(errorMessage);
+    }
 }
