@@ -30,6 +30,10 @@ public enum Menu {
             .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
     }
 
+    public String getName() {
+        return name;
+    }
+
     public int getPrice() {
         return price;
     }
