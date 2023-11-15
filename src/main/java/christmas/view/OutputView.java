@@ -47,4 +47,9 @@ public class OutputView {
         System.out.println("\n<총혜택 금액>");
         System.out.println(bill.getTotalBenefitMoney());
     }
+
+    public void printTotalPaymentMoney(Bill bill) {
+        System.out.println("\n<할인 후 예상 결제 금액>");
+        System.out.println(bill.calculateTotalPaymentMoney());
+    }
 }
