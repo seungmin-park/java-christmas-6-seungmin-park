@@ -14,6 +14,10 @@ public class Money {
         }
     }
 
+    public boolean isZero() {
+        return this.amount == 0;
+    }
+
     public boolean isGreaterThanEqualsAmount(int amount) {
         return this.amount >= amount;
     }
