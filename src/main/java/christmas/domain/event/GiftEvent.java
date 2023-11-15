@@ -9,6 +9,12 @@ public class GiftEvent implements Event {
     private static final Menu GIFT_MENU = Menu.CHAMPAGNE;
 
     @Override
+    public String getBenefitDescription(Order order) {
+        Money money = apply(order);
+        return String.format("증정 이벤트: -%s", money);
+    }
+
+    @Override
     public boolean isSatisfiedBy(Order order) {
         return order.isGreaterThanEqualsAmount(LEAST_EVENT_AMOUNT);
     }

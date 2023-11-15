@@ -18,6 +18,12 @@ public class WeekdayDiscountEvent implements Event {
     private static final int DISCOUNT_AMOUNT = 2_023;
 
     @Override
+    public String getBenefitDescription(Order order) {
+        Money money = apply(order);
+        return String.format("평일 할인: -%s", money);
+    }
+
+    @Override
     public boolean isSatisfiedBy(Order order) {
         return order.isMatchedDayOfWeek(WEEK_DAY) && order.containMenuType(MenuType.DESSERT);
     }

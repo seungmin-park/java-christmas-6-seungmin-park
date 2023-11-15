@@ -8,4 +8,6 @@ public interface Event {
     boolean isSatisfiedBy(Order order);
 
     Money apply(Order order);
+
+    String getBenefitDescription(Order order);
 }

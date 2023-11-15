@@ -8,6 +8,13 @@ import java.time.LocalDate;
 public class SpecialDiscountEvent implements Event {
 
     private static final int DISCOUNT_AMOUNT = 1_000;
+
+    @Override
+    public String getBenefitDescription(Order order) {
+        Money money = apply(order);
+        return String.format("특별 할인: -%s", money);
+    }
+
     @Override
     public boolean isSatisfiedBy(Order order) {
         return order.isMatchedDayOfWeek(DayOfWeek.SUNDAY) ||
