@@ -1,6 +1,10 @@
 ## 설계
 
+### 흐름도
 ![chrismas.drawio.png](./chrismas.drawio.png)
+
+### 도메인 관계도
+![christmas_domain.drawio.png](./christmas_domain.drawio.png)
 
 ## 기능 목록
 
