@@ -14,7 +14,7 @@ class OrderValidatorTest {
         //given
         String order = "";
         //when //then
-        assertThatThrownBy(() -> OrderValidator.validateOrder(order))
+        assertThatThrownBy(() -> OrderValidator.validateOrders(order))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
@@ -25,7 +25,7 @@ class OrderValidatorTest {
         //given
         String order = " 타파스-1";
         //when //then
-        assertThatThrownBy(() -> OrderValidator.validateOrder(order))
+        assertThatThrownBy(() -> OrderValidator.validateOrders(order))
             .isInstanceOf(IllegalArgumentException.class)
             .hasMessage("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
     }
@@ -36,7 +36,7 @@ class OrderValidatorTest {
         //given
         String order = "타파스-1";
         //when //then
-        assertThatCode(() -> OrderValidator.validateOrder(order))
+        assertThatCode(() -> OrderValidator.validateOrders(order))
             .doesNotThrowAnyException();
     }
 }
