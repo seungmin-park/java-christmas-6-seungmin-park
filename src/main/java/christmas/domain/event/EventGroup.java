@@ -25,7 +25,7 @@ public enum EventGroup {
     public static List<Event> getMatchedEvents(Order order) {
         return Stream.of(EventGroup.values())
             .flatMap(eventGroup -> eventGroup.events.stream())
-            .filter(event -> event.isSatisfiedBy(order))
+            .filter(event -> event.isSatisfiedBy(order) && order.getTotalPrice() >= 10_000)
             .collect(Collectors.toList());
     }
 }
