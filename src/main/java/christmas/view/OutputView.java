@@ -42,4 +42,9 @@ public class OutputView {
             System.out.println(giftMenu.getName());
         }
     }
+
+    public void printTotalBenefitMoney(Bill bill) {
+        System.out.println("\n<총혜택 금액>");
+        System.out.println(bill.getTotalBenefitMoney());
+    }
 }
