@@ -14,19 +14,19 @@ public class DateValidator {
 
     private static void isBlank(String visitDate) {
         if (visitDate.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw Exception.INVALID_DATE_EXCEPTION.getException();
         }
     }
 
     private static void isContainBlank(String visitDate) {
         if (visitDate.contains(" ")) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw Exception.INVALID_DATE_EXCEPTION.getException();
         }
     }
 
     private static void isNotPositiveDigit(String visitDate) {
         if (!Pattern.matches("^[1-9]\\d*$", visitDate)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw Exception.INVALID_DATE_EXCEPTION.getException();
         }
     }
 
@@ -38,10 +38,10 @@ public class DateValidator {
         try {
             int convertedVisitDate = Integer.parseInt(visitDate);
             if (convertedVisitDate < 1 || convertedVisitDate > 31) {
-                throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+                throw Exception.INVALID_DATE_EXCEPTION.getException();
             }
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 날짜입니다. 다시 입력해 주세요.");
+            throw Exception.INVALID_DATE_EXCEPTION.getException();
         }
     }
 }

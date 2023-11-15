@@ -4,6 +4,7 @@ import christmas.domain.Bill;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import christmas.domain.event.Event;
+import christmas.utils.Exception;
 import christmas.utils.OrderValidator;
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -57,7 +58,7 @@ public class View {
                 menuAndCount -> Menu.findByMenuName(menuAndCount[0]),
                 menuAndCount -> Integer.parseInt(menuAndCount[1]),
                 (existing, replacement) -> {
-                    throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+                    throw Exception.INVALID_ORDER_EXCEPTION.getException();
                 },
                 () -> new EnumMap<>(Menu.class)
             ));

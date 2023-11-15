@@ -1,5 +1,6 @@
 package christmas.domain;
 
+import christmas.utils.Exception;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,7 +22,7 @@ public enum MenuType {
         return Arrays.stream(MenuType.values())
             .filter(menuType -> menuType.hasMenu(menu))
             .findFirst()
-            .orElseThrow(() -> new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요."));
+            .orElseThrow(Exception.INVALID_ORDER_EXCEPTION::getException);
     }
 
     private boolean hasMenu(Menu menu) {

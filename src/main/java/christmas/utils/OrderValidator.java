@@ -13,13 +13,13 @@ public class OrderValidator {
 
     private static void isBlank(String orders) {
         if (orders.isBlank()) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw Exception.INVALID_ORDER_EXCEPTION.getException();
         }
     }
 
     private static void isContainBlank(String orders) {
         if (orders.contains(" ")) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw Exception.INVALID_ORDER_EXCEPTION.getException();
         }
     }
 
@@ -29,7 +29,7 @@ public class OrderValidator {
 
     private static void isInValidOrderFormat(String order) {
         if (!Pattern.matches("^[가-힣]+-[1-9]\\d*$", order)) {
-            throw new IllegalArgumentException("[ERROR] 유효하지 않은 주문입니다. 다시 입력해 주세요.");
+            throw Exception.INVALID_ORDER_EXCEPTION.getException();
         }
     }
 }
