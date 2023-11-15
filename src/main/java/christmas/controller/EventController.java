@@ -32,7 +32,7 @@ public class EventController {
     }
 
     private void printResults(Bill bill) {
-        view.printBenefitContextNoticeMessage();
+        view.printBenefitContextNoticeMessage(bill.getOrder());
         view.printOrderMenuAndCount(bill.getOrderMenus());
         view.printBenefitBeforeMoney(bill);
         view.printGiftEventContext(bill);

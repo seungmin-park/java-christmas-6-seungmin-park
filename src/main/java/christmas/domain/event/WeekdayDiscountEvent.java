@@ -7,15 +7,14 @@ import java.time.DayOfWeek;
 import java.util.List;
 
 public class WeekdayDiscountEvent implements Event {
-    private static final List<DayOfWeek> WEEK_DAY = List.of(
-        DayOfWeek.SUNDAY,
-        DayOfWeek.MONDAY,
-        DayOfWeek.TUESDAY,
-        DayOfWeek.WEDNESDAY,
-        DayOfWeek.THURSDAY
-    );
-    private static final MenuType EVENT_MENU_TYPE = MenuType.DESSERT;
     private static final int DISCOUNT_AMOUNT = 2_023;
+    private final List<DayOfWeek> weekday;
+    private final MenuType discountMenuType;
+
+    public WeekdayDiscountEvent(List<DayOfWeek> weekday, MenuType discountMenuType) {
+        this.weekday = weekday;
+        this.discountMenuType = discountMenuType;
+    }
 
     @Override
     public String getBenefitDescription(Order order) {
@@ -25,7 +24,7 @@ public class WeekdayDiscountEvent implements Event {
 
     @Override
     public boolean isSatisfiedBy(Order order) {
-        return order.isMatchedDayOfWeek(WEEK_DAY) && order.containMenuType(MenuType.DESSERT);
+        return order.isMatchedDayOfWeek(weekday) && order.containMenuType(MenuType.DESSERT);
     }
 
     @Override
@@ -34,6 +33,6 @@ public class WeekdayDiscountEvent implements Event {
     }
 
     private int calculateDiscountAmount(Order order) {
-        return order.getMenuTypeCount(EVENT_MENU_TYPE) * DISCOUNT_AMOUNT;
+        return order.getMenuTypeCount(discountMenuType) * DISCOUNT_AMOUNT;
     }
 }

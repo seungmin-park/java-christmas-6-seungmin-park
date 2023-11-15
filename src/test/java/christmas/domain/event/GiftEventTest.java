@@ -22,7 +22,7 @@ class GiftEventTest {
         Menu chocolateCake = Menu.CHOCOLATE_CAKE;
         menus.put(chocolateCake, 10);
         Order order = new Order(orderDate, menus);
-        GiftEvent giftEvent = new GiftEvent();
+        GiftEvent giftEvent = new GiftEvent(Menu.CHAMPAGNE);
         //when
         boolean result = giftEvent.isSatisfiedBy(order);
         //then
@@ -38,7 +38,7 @@ class GiftEventTest {
         Menu chocolateCake = Menu.CHOCOLATE_CAKE;
         menus.put(chocolateCake, 1);
         Order order = new Order(orderDate, menus);
-        GiftEvent giftEvent = new GiftEvent();
+        GiftEvent giftEvent = new GiftEvent(Menu.CHAMPAGNE);
         //when
         boolean result = giftEvent.isSatisfiedBy(order);
         //then
@@ -54,7 +54,7 @@ class GiftEventTest {
         Menu chocolateCake = Menu.CHOCOLATE_CAKE;
         menus.put(chocolateCake, 10);
         Order order = new Order(orderDate, menus);
-        GiftEvent giftEvent = new GiftEvent();
+        GiftEvent giftEvent = new GiftEvent(Menu.CHAMPAGNE);
         //when
         Money money = giftEvent.apply(order);
         //then

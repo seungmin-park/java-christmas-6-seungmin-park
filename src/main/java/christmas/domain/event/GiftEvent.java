@@ -6,7 +6,11 @@ import christmas.domain.Order;
 
 public class GiftEvent implements Event {
     private static final int LEAST_EVENT_AMOUNT = 120_000;
-    private static final Menu GIFT_MENU = Menu.CHAMPAGNE;
+    private final Menu giftMenu;
+
+    public GiftEvent(Menu giftMenu) {
+        this.giftMenu = giftMenu;
+    }
 
     @Override
     public String getBenefitDescription(Order order) {
@@ -21,10 +25,10 @@ public class GiftEvent implements Event {
 
     @Override
     public Money apply(Order order) {
-        return new Money(GIFT_MENU.getPrice());
+        return new Money(giftMenu.getPrice());
     }
 
     public Menu getGiftMenu() {
-        return GIFT_MENU;
+        return giftMenu;
     }
 }

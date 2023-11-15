@@ -8,6 +8,13 @@ import java.time.LocalDate;
 public class SpecialDiscountEvent implements Event {
 
     private static final int DISCOUNT_AMOUNT = 1_000;
+    private final DayOfWeek discountDayOfWeek;
+    private final LocalDate discountDate;
+
+    public SpecialDiscountEvent(DayOfWeek discountDayOfWeek, LocalDate discountDate) {
+        this.discountDayOfWeek = discountDayOfWeek;
+        this.discountDate = discountDate;
+    }
 
     @Override
     public String getBenefitDescription(Order order) {
@@ -17,8 +24,8 @@ public class SpecialDiscountEvent implements Event {
 
     @Override
     public boolean isSatisfiedBy(Order order) {
-        return order.isMatchedDayOfWeek(DayOfWeek.SUNDAY) ||
-            order.isMatchDate(LocalDate.of(2023, 12, 25));
+        return order.isMatchedDayOfWeek(discountDayOfWeek) ||
+            order.isMatchDate(discountDate);
     }
 
     @Override

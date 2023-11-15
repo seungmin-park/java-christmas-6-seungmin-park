@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import christmas.domain.Menu;
 import christmas.domain.Money;
 import christmas.domain.Order;
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.EnumMap;
 import java.util.Map;
@@ -20,7 +21,9 @@ class SpecialDiscountEventTest {
         LocalDate orderDate = LocalDate.of(2023, 12, 3);
         Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
         Order order = new Order(orderDate, menus);
-        SpecialDiscountEvent specialDiscountEvent = new SpecialDiscountEvent();
+        DayOfWeek specialDayOfWeek = DayOfWeek.SUNDAY;
+        LocalDate christmasDate = EventDateConstants.CHRISTMAS_DATE.getValue();
+        SpecialDiscountEvent specialDiscountEvent = new SpecialDiscountEvent(specialDayOfWeek, christmasDate);
         //when
         boolean result = specialDiscountEvent.isSatisfiedBy(order);
         //then
@@ -34,7 +37,9 @@ class SpecialDiscountEventTest {
         LocalDate orderDate = LocalDate.of(2023, 12, 1);
         Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
         Order order = new Order(orderDate, menus);
-        SpecialDiscountEvent specialDiscountEvent = new SpecialDiscountEvent();
+        DayOfWeek specialDayOfWeek = DayOfWeek.SUNDAY;
+        LocalDate christmasDate = EventDateConstants.CHRISTMAS_DATE.getValue();
+        SpecialDiscountEvent specialDiscountEvent = new SpecialDiscountEvent(specialDayOfWeek, christmasDate);
         //when
         boolean result = specialDiscountEvent.isSatisfiedBy(order);
         //then
@@ -48,7 +53,9 @@ class SpecialDiscountEventTest {
         LocalDate orderDate = LocalDate.of(2023, 12, 3);
         Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
         Order order = new Order(orderDate, menus);
-        SpecialDiscountEvent specialDiscountEvent = new SpecialDiscountEvent();
+        DayOfWeek specialDayOfWeek = DayOfWeek.SUNDAY;
+        LocalDate christmasDate = EventDateConstants.CHRISTMAS_DATE.getValue();
+        SpecialDiscountEvent specialDiscountEvent = new SpecialDiscountEvent(specialDayOfWeek, christmasDate);
         //when
         Money discountedMoney = specialDiscountEvent.apply(order);
         //then

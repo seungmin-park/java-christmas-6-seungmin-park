@@ -7,9 +7,14 @@ import java.time.DayOfWeek;
 import java.util.List;
 
 public class WeekendDiscountEvent implements Event {
-    private static final List<DayOfWeek> WEEKEND = List.of(DayOfWeek.FRIDAY, DayOfWeek.SATURDAY);
-    private static final MenuType EVENT_MENU_TYPE = MenuType.MAIN_DISH;
     private static final int DISCOUNT_AMOUNT = 2_023;
+    private final List<DayOfWeek> weekend;
+    private final MenuType discountMenuType;
+
+    public WeekendDiscountEvent(List<DayOfWeek> weekend, MenuType discountMenuType) {
+        this.weekend = weekend;
+        this.discountMenuType = discountMenuType;
+    }
 
     @Override
     public String getBenefitDescription(Order order) {
@@ -19,7 +24,7 @@ public class WeekendDiscountEvent implements Event {
 
     @Override
     public boolean isSatisfiedBy(Order order) {
-        return order.isMatchedDayOfWeek(WEEKEND) && order.containMenuType(EVENT_MENU_TYPE);
+        return order.isMatchedDayOfWeek(weekend) && order.containMenuType(discountMenuType);
     }
 
     @Override
@@ -28,6 +33,6 @@ public class WeekendDiscountEvent implements Event {
     }
 
     private int calculateDiscountAmount(Order order) {
-        return order.getMenuTypeCount(EVENT_MENU_TYPE) * DISCOUNT_AMOUNT;
+        return order.getMenuTypeCount(discountMenuType) * DISCOUNT_AMOUNT;
     }
 }

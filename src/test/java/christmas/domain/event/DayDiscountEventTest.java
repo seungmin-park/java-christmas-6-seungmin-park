@@ -22,7 +22,9 @@ class DayDiscountEventTest {
         LocalDate orderDate = LocalDate.of(2023, 12, 1);
         Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
         Order order = new Order(orderDate, menus);
-        DayDiscountEvent dayDiscountEvent = new DayDiscountEvent();
+        LocalDate startDate = EventDateConstants.START_DATE.getValue();
+        LocalDate endDate = EventDateConstants.CHRISTMAS_DATE.getValue();
+        DayDiscountEvent dayDiscountEvent = new DayDiscountEvent(startDate, endDate);
         //when
         boolean result = dayDiscountEvent.isSatisfiedBy(order);
         //then
@@ -36,7 +38,9 @@ class DayDiscountEventTest {
         LocalDate orderDate = LocalDate.of(2023, 12, 26);
         Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
         Order order = new Order(orderDate, menus);
-        DayDiscountEvent dayDiscountEvent = new DayDiscountEvent();
+        LocalDate startDate = EventDateConstants.START_DATE.getValue();
+        LocalDate endDate = EventDateConstants.CHRISTMAS_DATE.getValue();
+        DayDiscountEvent dayDiscountEvent = new DayDiscountEvent(startDate, endDate);
         //when
         boolean result = dayDiscountEvent.isSatisfiedBy(order);
         //then
@@ -50,7 +54,9 @@ class DayDiscountEventTest {
         //given
         Map<Menu, Integer> menus = new EnumMap<>(Menu.class);
         Order order = new Order(orderDate, menus);
-        DayDiscountEvent dayDiscountEvent = new DayDiscountEvent();
+        LocalDate startDate = EventDateConstants.START_DATE.getValue();
+        LocalDate endDate = EventDateConstants.CHRISTMAS_DATE.getValue();
+        DayDiscountEvent dayDiscountEvent = new DayDiscountEvent(startDate, endDate);
         //when
         Money discountedMoney = dayDiscountEvent.apply(order);
         //then
