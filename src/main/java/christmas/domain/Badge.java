@@ -18,7 +18,7 @@ public enum Badge {
 
     public static Badge findByMoney(Money money) {
         return Arrays.stream(Badge.values())
-            .filter(badge -> badge.amount.isGreaterThanEqualsAmount(money))
+            .filter(badge -> money.isGreaterThanEqualsAmount(badge.amount))
             .findFirst()
             .orElse(Badge.NONE);
     }
