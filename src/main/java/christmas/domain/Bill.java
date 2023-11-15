@@ -36,4 +36,18 @@ public class Bill {
             .findFirst()
             .get();
     }
+
+    public Money getTotalBenefitMoney() {
+        List<Money> benefitMonies = getBenefitMonies();
+
+        return benefitMonies.stream()
+            .reduce(Money::plus)
+            .orElse(new Money(0));
+    }
+
+    private List<Money> getBenefitMonies() {
+        return events.stream()
+            .map(event -> event.apply(order))
+            .toList();
+    }
 }
