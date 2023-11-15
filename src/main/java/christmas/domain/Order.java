@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class Order {
     private static final String INVALID_ORDER_MENU_EXCEPTION = "[ERROR] 음료만 주문할 수 없습니다.";
     private static final String MAX_ORDER_COUNT_EXCEPTION = "[ERROR] 메뉴는 한 번에 최대 20개까지 주문할 수 있습니다.";
-    private static int MAX_ORDER_COUNT = 20;
+    private static final int MAX_ORDER_COUNT = 20;
     private final LocalDate orderDate;
     private final Map<Menu, Integer> menus;
     private final Money money;
