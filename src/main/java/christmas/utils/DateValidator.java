@@ -5,6 +5,7 @@ import java.util.regex.Pattern;
 public class DateValidator {
 
     private static final String POSITIVE_DIGIT_REGEX = "^[1-9]\\d*$";
+
     private DateValidator() {
     }
 
@@ -39,7 +40,8 @@ public class DateValidator {
     private static void isOutRange(String visitDate) {
         try {
             int convertedVisitDate = Integer.parseInt(visitDate);
-            if (convertedVisitDate < 1 || convertedVisitDate > 31) {
+            if (convertedVisitDate < DateConstants.EVENT_START_DAY.getValue() ||
+                convertedVisitDate > DateConstants.EVENT_END_DAY.getValue()) {
                 throw Exception.INVALID_DATE_EXCEPTION.getException();
             }
         } catch (NumberFormatException e) {
