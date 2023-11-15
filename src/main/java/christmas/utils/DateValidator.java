@@ -3,6 +3,8 @@ package christmas.utils;
 import java.util.regex.Pattern;
 
 public class DateValidator {
+
+    private static final String POSITIVE_DIGIT_REGEX = "^[1-9]\\d*$";
     private DateValidator() {
     }
 
@@ -25,7 +27,7 @@ public class DateValidator {
     }
 
     private static void isNotPositiveDigit(String visitDate) {
-        if (!Pattern.matches("^[1-9]\\d*$", visitDate)) {
+        if (!Pattern.matches(POSITIVE_DIGIT_REGEX, visitDate)) {
             throw Exception.INVALID_DATE_EXCEPTION.getException();
         }
     }

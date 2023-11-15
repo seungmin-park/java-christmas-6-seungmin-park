@@ -3,6 +3,9 @@ package christmas.utils;
 import java.util.regex.Pattern;
 
 public class OrderValidator {
+
+    private static final String MENU_INPUT_FORMAT = "^[가-힣]+-[1-9]\\d*$";
+
     private OrderValidator() {
     }
 
@@ -28,7 +31,7 @@ public class OrderValidator {
     }
 
     private static void isInValidOrderFormat(String order) {
-        if (!Pattern.matches("^[가-힣]+-[1-9]\\d*$", order)) {
+        if (!Pattern.matches(MENU_INPUT_FORMAT, order)) {
             throw Exception.INVALID_ORDER_EXCEPTION.getException();
         }
     }
