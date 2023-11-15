@@ -1,6 +1,7 @@
 package christmas.domain;
 
 import christmas.domain.event.Event;
+import christmas.domain.event.GiftEvent;
 import java.util.List;
 
 public class Bill {
@@ -14,5 +15,10 @@ public class Bill {
 
     public Money getBenefitBeforeMoney() {
         return new Money(order.getTotalPrice());
+    }
+
+    public boolean isContainGifEvent() {
+        return events.stream()
+            .anyMatch(event -> event instanceof GiftEvent);
     }
 }
