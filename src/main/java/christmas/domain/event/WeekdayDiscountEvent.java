@@ -6,8 +6,7 @@ import christmas.domain.Order;
 import java.time.DayOfWeek;
 import java.util.List;
 
-public class WeekdayDiscountEvent implements Event {
-    private static final int DISCOUNT_AMOUNT = 2_023;
+public class WeekdayDiscountEvent implements DayOfWeekDiscountEvent {
     private static final String DESCRIPTION_FORMAT = "평일 할인: -%s";
     private final List<DayOfWeek> weekday;
     private final MenuType discountMenuType;
