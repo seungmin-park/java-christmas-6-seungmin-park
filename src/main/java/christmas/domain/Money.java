@@ -24,6 +24,10 @@ public class Money {
         return new Money(this.amount - money.amount);
     }
 
+    public Money plus(Money money) {
+        return new Money(this.amount + money.amount);
+    }
+
     @Override
     public String toString() {
         return String.format("%,d원", amount);
