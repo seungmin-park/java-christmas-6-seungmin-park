@@ -4,7 +4,7 @@ import christmas.domain.Bill;
 import christmas.domain.Menu;
 import christmas.domain.Order;
 import christmas.domain.event.Event;
-import christmas.utils.EventConstants;
+import christmas.utils.DelimiterConstants;
 import christmas.utils.Exception;
 import christmas.utils.OrderValidator;
 import java.util.Arrays;
@@ -48,13 +48,13 @@ public class View {
     }
 
     private List<String> convertToList(String orders) {
-        return Arrays.stream(orders.split(EventConstants.REST_DELIMITER.getValue(), -1))
+        return Arrays.stream(orders.split(DelimiterConstants.REST_DELIMITER.getValue(), -1))
             .toList();
     }
 
     private EnumMap<Menu, Integer> convertToMenuMap(List<String> convertedOrders) {
         return convertedOrders.stream()
-            .map(order -> order.split(EventConstants.ORDER_SPLIT_DELIMITER.getValue()))
+            .map(order -> order.split(DelimiterConstants.ORDER_SPLIT_DELIMITER.getValue()))
             .collect(Collectors.toMap(
                 menuAndCount -> Menu.findByMenuName(menuAndCount[0]),
                 menuAndCount -> Integer.parseInt(menuAndCount[1]),

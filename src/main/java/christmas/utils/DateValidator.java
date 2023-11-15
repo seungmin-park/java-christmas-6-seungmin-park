@@ -22,7 +22,7 @@ public class DateValidator {
     }
 
     private static void isContainBlank(String visitDate) {
-        if (visitDate.contains(EventConstants.BLANK_DELIMITER.getValue())) {
+        if (visitDate.contains(DelimiterConstants.BLANK_DELIMITER.getValue())) {
             throw Exception.INVALID_DATE_EXCEPTION.getException();
         }
     }

@@ -1,13 +1,13 @@
 package christmas.utils;
 
-public enum EventConstants {
+public enum DelimiterConstants {
 
     BLANK_DELIMITER(" "),
     REST_DELIMITER(","),
     ORDER_SPLIT_DELIMITER("-");
     private final String value;
 
-    EventConstants(String value) {
+    DelimiterConstants(String value) {
         this.value = value;
     }
 

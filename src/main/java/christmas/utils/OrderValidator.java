@@ -21,7 +21,7 @@ public class OrderValidator {
     }
 
     private static void isContainBlank(String orders) {
-        if (orders.contains(EventConstants.BLANK_DELIMITER.getValue())) {
+        if (orders.contains(DelimiterConstants.BLANK_DELIMITER.getValue())) {
             throw Exception.INVALID_ORDER_EXCEPTION.getException();
         }
     }
