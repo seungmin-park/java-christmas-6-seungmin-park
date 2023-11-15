@@ -2,6 +2,9 @@ package christmas.view;
 
 import christmas.domain.Bill;
 import christmas.domain.Menu;
+import christmas.domain.Order;
+import christmas.domain.event.Event;
+import java.util.List;
 import java.util.Map;
 
 public class OutputView {
@@ -56,5 +59,16 @@ public class OutputView {
     public void printBadge(Bill bill) {
         System.out.println("\n<12월 이벤트 배지>");
         System.out.println(bill.getBadgeForTotalBenefitMoney().getName());
+    }
+
+    public void printBenefitContext(List<Event> events, Order order) {
+        System.out.println("\n<혜택 내역>");
+        if (events.isEmpty()) {
+            System.out.println("없음");
+            return;
+        }
+        for (Event matchedEvent : events) {
+            System.out.println(matchedEvent.getBenefitDescription(order));
+        }
     }
 }
