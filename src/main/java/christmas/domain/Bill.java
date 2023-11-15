@@ -3,6 +3,7 @@ package christmas.domain;
 import christmas.domain.event.Event;
 import christmas.domain.event.GiftEvent;
 import java.util.List;
+import java.util.Map;
 
 public class Bill {
     private final Order order;
@@ -64,5 +65,17 @@ public class Bill {
         return events.stream()
             .map(event -> event.apply(order))
             .toList();
+    }
+
+    public Map<Menu, Integer> getOrderMenus() {
+        return order.getMenus();
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public List<Event> getEvents() {
+        return events;
     }
 }

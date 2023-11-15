@@ -92,4 +92,8 @@ public class Order {
             .mapToInt(menus::get)
             .sum();
     }
+
+    public Map<Menu, Integer> getMenus() {
+        return menus;
+    }
 }
