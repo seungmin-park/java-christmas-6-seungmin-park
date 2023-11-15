@@ -65,8 +65,8 @@ public class View {
             ));
     }
 
-    public void printBenefitContextNoticeMessage() {
-        outputView.printBenefitContextNoticeMessage();
+    public void printBenefitContextNoticeMessage(Order order) {
+        outputView.printBenefitContextNoticeMessage(order);
     }
 
     public void printOrderMenuAndCount(Map<Menu, Integer> orderMenus) {

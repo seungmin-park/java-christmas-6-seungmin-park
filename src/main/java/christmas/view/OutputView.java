@@ -2,6 +2,7 @@ package christmas.view;
 
 import christmas.domain.Bill;
 import christmas.domain.Menu;
+import christmas.domain.Money;
 import christmas.domain.Order;
 import christmas.domain.event.Event;
 import java.util.List;
@@ -10,7 +11,7 @@ import java.util.Map;
 public class OutputView {
 
     private static final String PLANNER_NOTICE_MESSAGE = "안녕하세요! 우테코 식당 12월 이벤트 플래너입니다.";
-    private static final String BENEFIT_CONTEXT_NOTICE_MESSAGE = "12월 3일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!";
+    private static final String BENEFIT_CONTEXT_NOTICE_MESSAGE = "12월 %d일에 우테코 식당에서 받을 이벤트 혜택 미리 보기!\n";
     private static final String ORDER_MENU_TITLE = "\n<주문 메뉴>";
     private static final String BENEFIT_BEFORE_TITLE = "\n<할인 전 총주문 금액>";
     private static final String GIFT_MENU_TITLE = "\n<증정 메뉴>";
@@ -22,6 +23,7 @@ public class OutputView {
     private static final String ORDER_MENU_FORMAT = "%s %d개\n";
     private static final String GIFT_MENU_FORMAT = "%s 1개\n";
     private static final String BENEFIT_CONTEXT_FORMAT = "-%s\n";
+    private static final String BENEFIT_CONTEXT_ZERO_FORMAT = "%s\n";
 
     public void printPlannerNoticeMessage() {
         System.out.println(PLANNER_NOTICE_MESSAGE);
@@ -31,8 +33,8 @@ public class OutputView {
         System.out.println(errorMessage);
     }
 
-    public void printBenefitContextNoticeMessage() {
-        System.out.println(BENEFIT_CONTEXT_NOTICE_MESSAGE);
+    public void printBenefitContextNoticeMessage(Order order) {
+        System.out.printf(BENEFIT_CONTEXT_NOTICE_MESSAGE, order.getOrderDayOfMonth());
     }
 
     public void printOrderMenuAndCount(Map<Menu, Integer> orderMenus) {
@@ -60,7 +62,12 @@ public class OutputView {
 
     public void printTotalBenefitMoney(Bill bill) {
         System.out.println(TOTAL_BENEFIT_MONEY_TITLE);
-        System.out.printf(BENEFIT_CONTEXT_FORMAT, bill.getTotalBenefitMoney());
+        Money totalBenefitMoney = bill.getTotalBenefitMoney();
+        if (totalBenefitMoney.isZero()) {
+            System.out.printf(BENEFIT_CONTEXT_ZERO_FORMAT, totalBenefitMoney);
+            return;
+        }
+        System.out.printf(BENEFIT_CONTEXT_FORMAT, totalBenefitMoney);
     }
 
     public void printTotalPaymentMoney(Bill bill) {
@@ -70,7 +77,7 @@ public class OutputView {
 
     public void printBadge(Bill bill) {
         System.out.println(BENEFIT_BADGE_TITLE);
-        System.out.println(bill.getBadgeForTotalBenefitMoney().getName());
+        System.out.print(bill.getBadgeForTotalBenefitMoney().getName());
     }
 
     public void printBenefitContext(List<Event> events, Order order) {
