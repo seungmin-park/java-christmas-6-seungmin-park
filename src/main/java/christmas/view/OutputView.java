@@ -1,5 +1,6 @@
 package christmas.view;
 
+import christmas.domain.Bill;
 import christmas.domain.Menu;
 import java.util.Map;
 
@@ -23,5 +24,10 @@ public class OutputView {
         System.out.println("\n<주문 메뉴>");
         orderMenus.keySet()
             .forEach(menu -> System.out.printf("%s %d개\n", menu.getName(), orderMenus.get(menu)));
+    }
+
+    public void printBenefitBeforeMoney(Bill bill) {
+        System.out.println("\n<할인 전 총주문 금액>");
+        System.out.println(bill.getBenefitBeforeMoney());
     }
 }
