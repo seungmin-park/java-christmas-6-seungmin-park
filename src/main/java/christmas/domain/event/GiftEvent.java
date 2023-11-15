@@ -17,4 +17,8 @@ public class GiftEvent implements Event {
     public Money apply(Order order) {
         return new Money(GIFT_MENU.getPrice());
     }
+
+    public Menu getGiftMenu() {
+        return GIFT_MENU;
+    }
 }
