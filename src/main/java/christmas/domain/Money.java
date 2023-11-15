@@ -1,6 +1,8 @@
 package christmas.domain;
 
 public class Money {
+    private static final String MONEY_FORMAT = "%,d원";
+    private static final String INVALID_MONEY_AMOUNT_EXCEPTION = "[ERROR] 금액은 음수가 될 수 없습니다.";
     private final int amount;
 
     public Money(int amount) {
@@ -10,7 +12,7 @@ public class Money {
 
     private void validate(int amount) {
         if (amount < 0) {
-            throw new IllegalArgumentException("[ERROR] 주문 금액 에러");
+            throw new IllegalArgumentException(INVALID_MONEY_AMOUNT_EXCEPTION);
         }
     }
 
@@ -36,6 +38,6 @@ public class Money {
 
     @Override
     public String toString() {
-        return String.format("%,d원", amount);
+        return String.format(MONEY_FORMAT, amount);
     }
 }

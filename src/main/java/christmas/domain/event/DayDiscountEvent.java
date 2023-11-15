@@ -7,6 +7,7 @@ import java.time.LocalDate;
 public class DayDiscountEvent implements Event {
     private static final int D_DAY_LEAST_DISCOUNT_AMOUNT = 1_000;
     private static final int D_DAY_DISCOUNT_POINT = 100;
+    private static final String DESCRIPTION_FORMAT = "크리스마스 디데이 할인: -%s";
     private final LocalDate startDate;
     private final LocalDate endDate;
 
@@ -18,7 +19,7 @@ public class DayDiscountEvent implements Event {
     @Override
     public String getBenefitDescription(Order order) {
         Money money = apply(order);
-        return String.format("크리스마스 디데이 할인: -%s", money);
+        return String.format(DESCRIPTION_FORMAT, money);
     }
 
     @Override

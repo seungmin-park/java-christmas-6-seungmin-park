@@ -6,6 +6,7 @@ import christmas.domain.Order;
 
 public class GiftEvent implements Event {
     private static final int LEAST_EVENT_AMOUNT = 120_000;
+    private static final String DESCRIPTION_FORMAT = "증정 이벤트: -%s";
     private final Menu giftMenu;
 
     public GiftEvent(Menu giftMenu) {
@@ -15,7 +16,7 @@ public class GiftEvent implements Event {
     @Override
     public String getBenefitDescription(Order order) {
         Money money = apply(order);
-        return String.format("증정 이벤트: -%s", money);
+        return String.format(DESCRIPTION_FORMAT, money);
     }
 
     @Override

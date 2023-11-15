@@ -8,6 +8,7 @@ import java.time.LocalDate;
 public class SpecialDiscountEvent implements Event {
 
     private static final int DISCOUNT_AMOUNT = 1_000;
+    private static final String DESCRIPTION_FORMAT = "특별 할인: -%s";
     private final DayOfWeek discountDayOfWeek;
     private final LocalDate discountDate;
 
@@ -19,7 +20,7 @@ public class SpecialDiscountEvent implements Event {
     @Override
     public String getBenefitDescription(Order order) {
         Money money = apply(order);
-        return String.format("특별 할인: -%s", money);
+        return String.format(DESCRIPTION_FORMAT, money);
     }
 
     @Override

@@ -8,6 +8,9 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 public class Order {
+    private static final String INVALID_ORDER_MENU_EXCEPTION = "[ERROR] 음료만 주문할 수 없습니다.";
+    private static final String MAX_ORDER_COUNT_EXCEPTION = "[ERROR] 메뉴는 한 번에 최대 20개까지 주문할 수 있습니다.";
+    private static int MAX_ORDER_COUNT = 20;
     private final LocalDate orderDate;
     private final Map<Menu, Integer> menus;
     private final Money money;
@@ -31,7 +34,7 @@ public class Order {
             .map(MenuType::findByMenu)
             .collect(Collectors.toSet());
         if (menuTypes.size() == 1 && menuTypes.contains(MenuType.BEVERAGE)) {
-            throw new IllegalArgumentException("[ERROR] 음료만 주문할 수 없습니다.");
+            throw new IllegalArgumentException(INVALID_ORDER_MENU_EXCEPTION);
         }
     }
 
@@ -40,8 +43,8 @@ public class Order {
             .stream()
             .mapToInt(menus::get)
             .sum();
-        if (menuCount > 20) {
-            throw new IllegalArgumentException("[ERROR] 메뉴는 한 번에 최대 20개까지 주문할 수 있습니다.");
+        if (menuCount > MAX_ORDER_COUNT) {
+            throw new IllegalArgumentException(MAX_ORDER_COUNT_EXCEPTION);
         }
     }
 

@@ -8,6 +8,7 @@ import java.util.List;
 
 public class WeekendDiscountEvent implements Event {
     private static final int DISCOUNT_AMOUNT = 2_023;
+    private static final String DESCRIPTION_FORMAT = "주말 할인: -%s";
     private final List<DayOfWeek> weekend;
     private final MenuType discountMenuType;
 
@@ -19,7 +20,7 @@ public class WeekendDiscountEvent implements Event {
     @Override
     public String getBenefitDescription(Order order) {
         Money money = apply(order);
-        return String.format("주말 할인: -%s", money);
+        return String.format(DESCRIPTION_FORMAT, money);
     }
 
     @Override
