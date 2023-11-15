@@ -1,7 +1,5 @@
 package christmas.domain;
 
-import java.text.NumberFormat;
-
 public class Money {
     private final int amount;
 

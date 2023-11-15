@@ -4,7 +4,7 @@ import christmas.domain.Money;
 import christmas.domain.Order;
 import java.time.LocalDate;
 
-public class DayDiscountEvent implements Event{
+public class DayDiscountEvent implements Event {
     private static final LocalDate startDate = LocalDate.of(2023, 12, 1);
     private static final LocalDate endDate = LocalDate.of(2023, 12, 25);
     private static final int D_DAY_LEAST_DISCOUNT_AMOUNT = 1_000;
