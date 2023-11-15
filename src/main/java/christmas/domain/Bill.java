@@ -11,4 +11,8 @@ public class Bill {
         this.order = order;
         this.events = events;
     }
+
+    public Money getBenefitBeforeMoney() {
+        return new Money(order.getTotalPrice());
+    }
 }
