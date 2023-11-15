@@ -20,6 +20,10 @@ public class Money {
         return this.amount >= amount;
     }
 
+    public boolean isGreaterThanEqualsAmount(Money money) {
+        return this.amount >= money.amount;
+    }
+
     public Money minus(Money money) {
         return new Money(this.amount - money.amount);
     }
