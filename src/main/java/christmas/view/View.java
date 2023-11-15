@@ -1,6 +1,9 @@
 package christmas.view;
 
+import christmas.domain.Bill;
 import christmas.domain.Menu;
+import christmas.domain.Order;
+import christmas.domain.event.Event;
 import christmas.utils.OrderValidator;
 import java.util.Arrays;
 import java.util.EnumMap;
@@ -58,5 +61,33 @@ public class View {
                 },
                 () -> new EnumMap<>(Menu.class)
             ));
+    }
+
+    public void printOrderMenuAndCount(Map<Menu, Integer> orderMenus) {
+        outputView.printOrderMenuAndCount(orderMenus);
+    }
+
+    public void printBenefitBeforeMoney(Bill bill) {
+        outputView.printBenefitBeforeMoney(bill);
+    }
+
+    public void printGiftEventContext(Bill bill) {
+        outputView.printGiftEventContext(bill);
+    }
+
+    public void printBenefitContext(List<Event> events, Order order) {
+        outputView.printBenefitContext(events, order);
+    }
+
+    public void printTotalBenefitMoney(Bill bill) {
+        outputView.printTotalBenefitMoney(bill);
+    }
+
+    public void printTotalPaymentMoney(Bill bill) {
+        outputView.printTotalPaymentMoney(bill);
+    }
+
+    public void printBadge(Bill bill) {
+        outputView.printBadge(bill);
     }
 }
