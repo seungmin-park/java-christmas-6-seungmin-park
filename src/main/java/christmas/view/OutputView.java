@@ -45,7 +45,7 @@ public class OutputView {
 
     public void printTotalBenefitMoney(Bill bill) {
         System.out.println("\n<총혜택 금액>");
-        System.out.println(bill.getTotalBenefitMoney());
+        System.out.printf("-%s\n", bill.getTotalBenefitMoney());
     }
 
     public void printTotalPaymentMoney(Bill bill) {
